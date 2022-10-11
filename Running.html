@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Animation</title>
+    <link rel="icon" type="image/x-icon" href="Runner2.ico" style="border-radius: 30px;">
+    <style>
+        #img{
+            height: 400px;
+            width: 300px;
+        }
+        button{
+            background-color: #00ff8cf4;
+            border-radius: 4px;
+            border-color: #00ff8cf4;
+            font-size: 17px;
+            margin-top: 20px;
+        }
+        h2{
+            text-align: center;
+            color: darkgreen;
+        }
+    </style>
+</head>
+<body style="background-color: #31e192e0">
+    <h2>Running Man Animation</h2>
+    <img id="img" src="Runner1.png" style="margin-left:600px; margin-top:50px"><br>
+    <button onclick="Run()" style="margin-left:590px; ">Start Running</button>
+    <button onclick="Stop()" style="margin-left:80px; ">Stop Running</button>
+    <p id="timer" style="margin-left:677px;"></p>
+
+
+    <script>
+        let val, v;
+        function Run(){
+            timer();
+            val = setInterval(runn, 200);
+            function runn(){
+                if(img.src.match("Runner1")){
+                    document.getElementById("img").src = "Runner2.png";
+                }
+                else if(img.src.match("Runner2")){
+                    document.getElementById("img").src = "Runner3.png";
+                }
+                else if(img.src.match("Runner3")){
+                    document.getElementById("img").src = "Runner4.png";
+                }
+                else if(img.src.match("Runner4")){
+                    document.getElementById("img").src = "Runner1.png";
+                }
+            }
+        }
+        
+        function timer() {
+            let i=0, h=0, m=0;
+            v = setInterval(loop,1000);
+            function loop(){
+                document.getElementById("timer").innerHTML= h + " Hour : " + m + " min : " + i + " sec";
+                i++;
+                if(i==59){
+                    i=0;
+                    m+=1;
+                }
+                else if(m==60)
+                h+=1;          
+            }
+         
+        }
+
+        function Stop(){
+            let val2 = clearInterval(val);
+            clearInterval(v);
+        }
+    </script>
+</body>
+</html>
